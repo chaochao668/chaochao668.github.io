@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>可爱的天天</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content=".showVideo {     position: &quot;fixed&quot;;     top: 10%;     left:1%;     z-index:1000;     display:block; } .hideVideo {     position:absolute;     top:10%;     left:10%;     z-index:-1;">
+  <meta name="description" content=".showVideo {     position: &quot;fixed&quot;;     top: 10%;     left:1%;     z-index:1000;     display:block; } .timeshow { 	font-size: 7px; 	line-height: 1px; } .imgVideo { } .hideVideo {     po">
 <meta property="og:type" content="website">
 <meta property="og:title" content="可爱的天天">
 <meta property="og:url" content="http://yoursite.com/video/index.html">
 <meta property="og:site_name" content="可爱的天天">
-<meta property="og:description" content=".showVideo {     position: &quot;fixed&quot;;     top: 10%;     left:1%;     z-index:1000;     display:block; } .hideVideo {     position:absolute;     top:10%;     left:10%;     z-index:-1;">
+<meta property="og:description" content=".showVideo {     position: &quot;fixed&quot;;     top: 10%;     left:1%;     z-index:1000;     display:block; } .timeshow { 	font-size: 7px; 	line-height: 1px; } .imgVideo { } .hideVideo {     po">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-10T23:34:17.557Z">
+<meta property="og:updated_time" content="2019-08-11T09:45:17.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="可爱的天天">
-<meta name="twitter:description" content=".showVideo {     position: &quot;fixed&quot;;     top: 10%;     left:1%;     z-index:1000;     display:block; } .hideVideo {     position:absolute;     top:10%;     left:10%;     z-index:-1;">
+<meta name="twitter:description" content=".showVideo {     position: &quot;fixed&quot;;     top: 10%;     left:1%;     z-index:1000;     display:block; } .timeshow { 	font-size: 7px; 	line-height: 1px; } .imgVideo { } .hideVideo {     po">
   
     <link rel="alternative" href="/atom.xml" title="可爱的天天" type="application/atom+xml">
   
@@ -179,6 +179,12 @@
     z-index:1000;
     display:block;
 }
+.timeshow {
+	font-size: 7px;
+	line-height: 1px;
+}
+.imgVideo {
+}
 .hideVideo {
     position:absolute;
     top:10%;
@@ -218,10 +224,18 @@
             dataType: "json",
             url: "data.json",
             success: function (result) {
-                var str = "";
+                var str = "<table>";
+                var lineno = 0;
                 $.each(result,function(index,obj){
-                       str += "<center><img class=\"imgVideo\"  alt='"+obj.mp4+"'  src='" + obj.gif + "' width='"+obj.width+"'  height='"+obj.height+"'/></center><center>"+obj.time+"</center>";
+if((++lineno)%2==1)
+{
+                       str += "<tr><td align=\"center\"><img class=\"imgVideo\"  alt='"+obj.mp4+"'  src='" + obj.gif + "' width='"+obj.width+"'  height='"+obj.height+"'/><br><font class=\"timeshow\">"+obj.time+"</font></td>";
+}
+else{
+                       str += "<td align=\"center\"><img class=\"imgVideo\"  alt='"+obj.mp4+"'  src='" + obj.gif + "' width='"+obj.width+"'  height='"+obj.height+"'/><br><font class=\"timeshow\">"+obj.time+"</font></td></tr>";
+}
                 });
+				str+="</table>";
                 $("#imglist").append(str);
                 $(".imgVideo").click(function(){
 											var newwin=window.open()
